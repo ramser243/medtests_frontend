@@ -1,0 +1,29 @@
+// variables start
+$sm : 576;
+$md : 768;
+$lg : 992;
+// variables end
+
+// media start
+@mixin phone($orientation) {
+  @if $orientation == all {
+     @media (min-width: $sm) and (max-width: $md) { @content; }
+  } @else if $orientation == portrait {
+      @media (min-width: 320px) and (max-width: 420px) and (orientation: portrait) { @content; }
+  } @else if $orientation == landscape {
+    @media (min-width: 420px) and (max-width: 820px) and (orientation: landscape) { @content; }
+  }
+}
+@mixin tablet($orientation) {
+  @if $orientation == all {
+    @media (min-width: 768px) { @content; }
+  } @else if $orientation == portrait {
+    @media (min-width: 768px) and (orientation: portrait) { @content; }
+  } @else if $orientation == landscape {
+    @media (min-width: 768px) and (orientation: landscape) { @content; }
+  }
+}
+@mixin desktop {
+  @media (min-width: 1100px) { @content; }
+}
+// media end

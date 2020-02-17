@@ -1,0 +1,721 @@
+@import "mixins.scss";
+
+$main-color : #8e72ff;
+$block-color: #dff1df;
+
+html {
+  //font sizes start
+  font-size: 14px;
+  @include phone(all) {
+    font-size: 11px;
+  }
+  @include tablet(all) {
+    font-size: 12px;
+  }
+  @include desktop {
+    font-size: 13px;
+  }
+  .header-text {
+    margin: 0.5rem 0;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .main-text {
+    margin: 1rem 0 4rem 0;
+    font-size: 1.3rem;
+  }
+  //font sizes end
+
+  body {
+    //.container {
+    //  width: 100%;
+    //}
+
+    // background-color indicated in App.vue
+
+
+    .main_block {
+      padding: 0;
+      max-width: 100%;
+      background-color: white;
+      min-height: 100vh;
+
+      @include tablet(landscape) {
+        width: 60%;
+        margin-left: 20%;
+      }
+      @include desktop {
+        width: 40%;
+        margin-left: 30%;
+      }
+
+      .welcome-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+        background: linear-gradient(45deg, #d67e42, #8e72ff);
+
+        a.btn {
+          font-size: 1rem;
+          margin: 0 auto;
+          min-width: 50%;
+        }
+
+        .welcome-dev-connect {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          .header-text {
+            //margin-top: 30rem;
+          }
+        }
+      }
+
+      .crumbs {
+        text-align: center;
+        color: white;
+        display: grid;
+        &.crumbs-triple {
+          grid-template-columns: 3fr 0.5fr 2fr 0.5fr 5fr 0.5fr 2fr 0.5fr 3fr;
+          grid-template-areas: "left-crumb-main left-crumb-after . center-left-crumb-after center-crumb-main center-right-crumb-after . right-crumb-after right-crumb-main";
+        }
+        &.crumbs-double {
+          grid-template-columns: 5fr 1fr 5fr 1fr 5fr;
+          grid-template-areas: "left-crumb-main left-crumb-after . center-left-crumb-after center-crumb-main";
+          .crumb-main.center-crumb-main {
+            border-radius: 0 0 0 10px;
+          }
+        }
+
+        grid-template-rows: 20px;
+
+
+        .crumb-after {
+          background-color: $main-color;
+
+          div {
+            height: 100%;
+            background-color: white;
+          }
+
+          &.left-crumb-after {
+            grid-area: left-crumb-after;
+
+            div {
+              border-top-left-radius: 10px;
+            }
+          }
+
+          &.right-crumb-after {
+            grid-area: right-crumb-after;
+
+            div {
+              border-top-right-radius: 10px;
+            }
+          }
+
+          &.center-left-crumb-after {
+            grid-area: center-left-crumb-after;
+
+            div {
+              border-top-right-radius: 10px;
+            }
+          }
+
+          &.center-right-crumb-after {
+            grid-area: center-right-crumb-after;
+
+            div {
+              border-top-left-radius: 10px;
+            }
+          }
+        }
+
+        .crumb-main {
+          svg {
+            height: 70%;
+          }
+          background-color: $main-color;
+
+          &.left-crumb-main {
+            grid-area: left-crumb-main;
+            border-bottom-right-radius: 10px;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          &.center-crumb-main {
+            grid-area: center-crumb-main;
+            border-radius: 0 0 10px 10px;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          &.right-crumb-main {
+            grid-area: right-crumb-main;
+            border-bottom-left-radius: 10px;
+          }
+        }
+        }
+
+      .question-header {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .button-block-for-exam {
+        display: grid;
+        grid-gap: 3px;
+        padding: 3px;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 40px;
+        grid-template-areas: "previous-button end-exam-button next-button";
+
+        .btn-previous {
+          grid-area: previous-button;
+        }
+
+        .btn-exam {
+          grid-area: end-exam-button;
+        }
+
+        .btn-next {
+          grid-area: next-button;
+        }
+      }
+
+      .button-block-for-test-with-answers {
+        display: grid;
+        grid-gap: 3px;
+        padding: 3px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 40px;
+        grid-template-areas: "previous-button next-button";
+
+        .btn-previous {
+          grid-area: previous-button;
+        }
+
+        .btn-exam {
+          display: none;
+        }
+
+        .btn-next {
+          grid-area: next-button;
+        }
+      }
+
+      .exam-end-container {
+        padding-bottom: 0.75rem;
+        .progress {
+          height: 3rem;
+          background-color: #ff6868;
+          margin: 1rem auto;
+          width: 70%;
+          padding: 0;
+          .progress-bar {
+            background-color: #088a08;
+            color: white;
+            font-size: 1.5rem;
+          }
+        }
+        .end-exam-question-row {
+          &:hover {
+            cursor: pointer;
+          }
+
+          background-color: #e7efff;
+          font-size: 1rem;
+          padding: 0.3rem 0.3rem 0.3rem 1rem;
+          margin: 0.3rem 0;
+          display: grid;
+          grid-template-columns: 11fr 1fr;
+
+          span {
+            grid-column: 2;
+            grid-row: 1 / 3;
+          }
+
+          .exam-end-ul {
+            padding: 0.7rem 0.5rem 0 1rem;
+            font-size: 0.9rem;
+            margin: 0;
+          }
+        }
+      }
+
+      .block-container {
+        display: grid;
+        @include phone(portrait) {
+          padding: .5rem .3rem;
+          grid-template-columns: 1fr;
+        }
+        @include tablet(all) {
+          padding: .7rem;
+          grid-template-columns: 1fr 1fr;
+          &.choice {
+            grid-template-columns: 1fr 1fr 1fr;
+          }
+        }
+        grid-gap: .5rem;
+        align-items: center;
+        justify-items: center;
+        &.choice div {
+          height: 100px;
+        }
+        div {
+          border-radius: .5rem;
+          background-color: $block-color;
+          width: 100%;
+          height: 60px;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          justify-content: center;
+          p {
+            margin: 0;
+            &:first-letter {
+              text-transform: uppercase;
+            }
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: #c2d1c2;
+          }
+        }
+      }
+
+      .navigate {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        form {
+          input.form-control {
+            &:focus {
+              box-shadow: -0.2rem 0 0px 0.2rem rgba(0,123,255,.25);
+            }
+          }
+          padding: 0;
+          .form-control {
+            border: none;
+          }
+          .input-group-append {
+            div {
+              height: 100%;
+              svg {
+                padding: 0;
+                background-color: white;
+                color: black;
+                height: 100%;
+              }
+            }
+          }
+        }
+        min-height: 60px;
+        background-color: $main-color;
+        color: white;
+        .nav-theme-choiced {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1fr 9fr 1fr;
+          justify-items: center;
+          align-items: center;
+          grid-template-areas: "back-button theme-name menu-button";
+          svg {
+            height: 3rem;
+          }
+
+            p {
+              text-align: center;
+              margin: 0;
+            }
+        }
+      }
+
+      .answer {
+        &:hover {
+          cursor: pointer;
+        }
+        &.list-style-circle {
+          list-style: circle;
+          font-weight: 600;
+        }
+      }
+
+      .custom-fixed-bottom {
+        bottom: 0;
+        position: fixed;
+        @include phone(portrait) {
+          width: 100%;
+        }
+        @include tablet(portrait) {
+          width: 100%;
+        }
+        @include tablet(landscape) {
+          width: 60%;
+        }
+        @include desktop {
+          width: 40%;
+        }
+      }
+    }
+  }
+
+  .turn_screen {
+    @include phone(landscape) {
+      display: block;
+    }
+    display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+  }
+
+  .load-ring {
+    position: absolute;
+    z-index: 1100;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    @include tablet(landscape) {
+      min-height: 98vh;
+    }
+
+    .lds-ring {
+      margin: 0 auto;
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+
+    .lds-ring div {
+      box-sizing: border-box;
+      display: block;
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      margin: 8px;
+      border: 8px solid #cef;
+      border-radius: 50%;
+      animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-color: #cef transparent transparent transparent;
+    }
+
+    .lds-ring div:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+
+    .lds-ring div:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+
+    .lds-ring div:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+
+    @keyframes lds-ring {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .modal {
+    .modal-content {
+      border: none;
+
+      .modal-header {
+        border: none;
+        background-color: $main-color;
+        color: white;
+
+        button {
+          color: white;
+        }
+      }
+
+      .modal-body {
+        .modal-change-question-group {
+          .change-question-block {
+            border-radius: 5px;
+            background-color: $block-color;
+            font-weight: 600;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 5fr 0.5fr 3fr;
+            grid-template-rows: auto;
+            grid-template-areas: "text-place text-place text-place text-place text-place" "modal-input modal-questions-amount . . button" "modal-input-text modal-input-text modal-input-text . button-s";
+            align-items: center;
+            &.question-search-by-number {
+              margin-bottom: 1rem;
+              input {
+                grid-area: modal-input;
+              }
+              button {
+                grid-area: button;
+              }
+            }
+            &.question-search-by-name {
+              input {
+                grid-area: modal-input-text;
+              }
+              button {
+                grid-area: button-s;
+              }
+            }
+
+            p {
+              grid-area: text-place;
+              margin-bottom: 2rem;
+            }
+
+            input {
+              text-align: center;
+              width: 100%;
+              background: none;
+              border: none;
+              border-bottom: 2px solid #a4a4a4;
+              &:focus {
+                border-bottom: 2px solid $main-color;
+                box-shadow: none;
+                outline: none;
+              }
+            }
+
+            .modal-questions-amount {
+              grid-area: modal-questions-amount;
+            }
+          }
+        }
+
+        .modal-change-variant-of-testing-and-menu {
+          .link-button-modal {
+            .sm-list {
+              div {
+                margin: .5rem 4rem .5rem .5rem !important;
+                padding: 0 !important;
+              }
+            }
+            border-radius: 5px;
+            background-color: $block-color;
+            font-weight: 600;
+            padding: 1rem 0 1rem 2rem;
+            margin: 0;
+            &:nth-child(2) {
+              margin: 1rem 0;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+
+        .modal-search-results-by-name {
+          p.results-text-block {
+            padding: 2rem;
+            margin: 0;
+          }
+          p.search-result-header {
+            padding: 1rem;
+            margin: 0;
+          }
+          .question-search-by-name-result-block {
+            &:hover {
+            cursor: pointer;
+          }
+
+          background-color: #e7efff;
+          font-size: 1rem;
+          padding: 0.3rem 0.3rem 0.3rem 1rem;
+          margin: 0.3rem 0;
+
+          }
+        }
+      }
+
+      .modal-footer {
+        border: none;
+      }
+    }
+  }
+
+  .btn {
+    span {
+      display: inline-block;
+    }
+
+    border: none;
+    box-shadow: none !important;
+    color: white;
+
+    &:hover {
+      color: white;
+    }
+
+    &.btn-u {
+      height: 100%;
+      background-color: #322aa7;
+
+      &:hover {
+        background-color: #2c2584;
+      }
+    }
+
+
+    &.btn-exam {
+      font-size: 0.8rem;
+      background-color: #32a72a;
+
+      &:hover {
+        background-color: #236c1d;
+      }
+    }
+    &.btn-clear {
+      color: black;
+      background-color: white;
+      font-size: 1.5rem;
+    }
+  }
+
+
+
+  // animations
+
+  // #1 rotation
+  @-webkit-keyframes rotation {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @-moz-keyframes rotation {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @-o-keyframes rotation {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotation {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(720deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  .modal-backdrop.show {
+    opacity: 0.7;
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .sm-list {
+    div {
+      display: inline-block;
+      margin: 1rem;
+      padding: 1rem;
+
+      a {
+        i {
+          color: #00000047;
+        }
+      }
+
+      &:hover {
+        -webkit-animation-name: rotation;
+        -webkit-animation-duration: 0.3s;
+        -webkit-animation-iteration-count: 1;
+        -webkit-animation-timing-function: linear;
+        -moz-animation-name: rotation;
+        -moz-animation-duration: 0.3s;
+        -moz-animation-iteration-count: 1;
+        -moz-animation-timing-function: linear;
+        -o-animation-name: rotation;
+        -o-animation-duration: 0.3s;
+        -o-animation-iteration-count: 1;
+        -o-animation-timing-function: linear;
+        animation-name: rotation;
+        animation-duration: 0.3s;
+        animation-iteration-count: 1;
+        animation-timing-function: linear;
+
+        a {
+          i {
+            &.fa-vk {
+              color: #4877a9;
+            }
+
+            &.fa-telegram {
+              color: #2F9FD9;
+            }
+
+            &.fa-skype {
+              color: #2F9FD9;
+            }
+          }
+        }
+      }
+    }
+  }
+}
