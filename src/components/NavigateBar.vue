@@ -63,6 +63,9 @@
                 if (this.inputText == 'салам') {
                     location.href = 'https://vk.com/id385610795'
                 }
+                else if (this.inputText == 'шрек') {
+                    location.href = 'https://vk.com/ebukin99999'
+                }
                 this.$store.dispatch('setStoreThemeNamePart', this.inputText)
             },
             clearInputText() {
