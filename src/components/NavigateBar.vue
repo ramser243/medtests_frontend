@@ -3,7 +3,7 @@
         <nav class="navigate">
              <form v-if="this.$route.path == '/themes'" class="mx-auto input-group col-9 col-md-8 col-lg-6"
                   @submit.prevent="Search" id="theme-search-form">
-                <input id="theme-search-input" class="form-control" type="search" placeholder="Найти тему..."
+                <input id="theme-search-input" class="form-control" type="search" placeholder="Найти тему..."  autocomplete="off"
                        v-model="inputText" @keyup="Search">
                 <div class="input-group-append">
                     <button class="btn btn-clear" type="button" @click="clearInputText">&times;</button>

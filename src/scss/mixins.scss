@@ -11,7 +11,7 @@ $lg : 992;
   } @else if $orientation == portrait {
       @media (min-width: 320px) and (max-width: 420px) and (orientation: portrait) { @content; }
   } @else if $orientation == landscape {
-    @media (min-width: 420px) and (max-width: 820px) and (orientation: landscape) { @content; }
+    @media (min-width: 420px) and (max-width: 767px) and (orientation: landscape) { @content; }
   }
 }
 @mixin tablet($orientation) {

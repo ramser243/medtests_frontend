@@ -44,7 +44,7 @@
                             <p>Связаться с разработчиком</p>
                             <div class="sm-list">
                                 <div class="social vk">
-                                    <a href="https://vk.com/dhdjsixbjxkss" target="_blank">
+                                    <a href="https://vk.com/auvred" target="_blank">
                                         <i class="fa fa-vk fa-2x"></i>
                                     </a>
                                 </div>
