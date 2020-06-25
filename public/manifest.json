@@ -1,0 +1,20 @@
+{
+  "short_name": "MedTests",
+  "name": "MedTests",
+  "icons": [
+    {
+      "src": "https://tests.promedol.ru/images/medtests.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://tests.promedol.ru/images/medtests.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "https://tests.promedol.ru/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}

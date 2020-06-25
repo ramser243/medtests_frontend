@@ -25,7 +25,8 @@ const store = new Vuex.Store({
         dict_for_test: {}, //формат: {4(номер вопроса) : [false, true, false, false](выбранность ответов)}
         time_of_exam: null,
         correct_answers_exam: 0,
-        loading: false
+        loading: false,
+        is_admin: false
     },
     getters: {
         // themes start
@@ -47,6 +48,7 @@ const store = new Vuex.Store({
         get_true_dict_for_exam: state => state.true_dict_for_exam,
         get_correct_answers_exam: state => state.correct_answers_exam,
         get_loading: state => state.loading,
+        is_admin: state => state.is_admin,
     },
     mutations: {
         SET_LOADING: (state, value) => state.loading = value,
@@ -71,13 +73,14 @@ const store = new Vuex.Store({
         SET_CHANGE_QUESTION_TO_DICT_FOR_TEST: (state, value) => Vue.set(state.dict_for_test[value[0]], value[1], value[2]),
         SET_TIME_OF_EXAM: (state, value) => state.time_of_exam = value,
         SET_TRUE_DICT_FOR_EXAM: (state, value) => Vue.set(state.true_dict_for_exam, value[0], value[1]),
-        SET_CORRECT_ANSWERS_EXAM: (state, value) => state.correct_answers_exam = value
+        SET_CORRECT_ANSWERS_EXAM: (state, value) => state.correct_answers_exam = value,
+        SET_ADMIN: (state, value) => state.is_admin = value
     },
     actions: {
-        startLoading({commit}){
+        startLoading({commit}) {
             commit('SET_LOADING', true)
         },
-        stopLoading({commit}){
+        stopLoading({commit}) {
             commit('SET_LOADING', false)
         },
 
@@ -103,19 +106,17 @@ const store = new Vuex.Store({
             }
             if (value[0] == 'option') { // если приходит false или номер, при выборе варианта тестирования
                 commit('SET_ACTIVE_THEME', (value[1]))
-            }
-            else if(value[0] == 'exam' || value[0] == 'test') {
+            } else if (value[0] == 'exam' || value[0] == 'test') {
                 if (value[0] == 'exam') {
                     axios.get('/themes/exam/' + value[1])
-                    .then(function (response) {
-                        dispatch('setStoreActiveThemeToTest', response['data'])
-                    })
-                }
-                else if (value[0] == 'test') {
+                        .then(function (response) {
+                            dispatch('setStoreActiveThemeToTest', response['data'])
+                        })
+                } else if (value[0] == 'test') {
                     axios.get('/themes/' + value[1])
-                    .then(function (response) {
-                        dispatch('setStoreActiveThemeToTest', response['data'])
-                    })
+                        .then(function (response) {
+                            dispatch('setStoreActiveThemeToTest', response['data'])
+                        })
                 }
             }
         },
@@ -177,13 +178,30 @@ const store = new Vuex.Store({
         },
         setStoreCountCorrectAnswers({commit}) {
             let counter = 0
-            for(let i = 1; i <= 30; i++){
+            for (let i = 1; i <= 30; i++) {
                 if (this.state.true_dict_for_exam[i].toString() == this.state.dict_for_test[i].toString()) {
                     counter++
                 }
             }
             commit('SET_CORRECT_ANSWERS_EXAM', counter)
-        }
+        },
+        loginAdmin({commit}, value) {
+             axios.post('/admin', {
+                    login: value[0],
+                    password: value[1]
+                }).then(() => {
+                    commit('SET_ADMIN', true)
+                }).catch(() => {
+                    commit('SET_ADMIN', false)
+                })
+        },
+        saveAnswer({commit}, value) {
+             axios.post('/answers/' + value[0], {
+                    name: value[2],
+                    value: value[1],
+                    admin: 'true'
+                })
+        },
     }
 });
 export default store

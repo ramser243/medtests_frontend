@@ -16,8 +16,6 @@
 <script>
     import {mapGetters} from 'vuex'
     import UlForShowAnswers from "./UlForShowAnswers";
-    import ButtonPrevious from "../buttons/ButtonPrevious";
-    import ButtonNext from "../buttons/ButtonNext";
     import HeaderForTesting from "../HeaderForTesting";
     import ButtonBlock from "../buttons/ButtonBlock";
 

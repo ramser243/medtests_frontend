@@ -9,6 +9,9 @@
         <ChoiceBlock
                 @click.native="exam"
                 :text="'Экзамен'"/>
+        <ChoiceBlock v-if="is_admin"
+                @click.native="showAnswers"
+                :text="'Редактор'"/>
     </div>
 </template>
 
@@ -34,14 +37,13 @@
             },
             teaching() {
                 this.$store.dispatch('setStoreActiveTheme', ['test', this.get_active_theme_id])
-
                 this.$store.dispatch('setStoreActiveQuestion', 1)
                 this.$store.dispatch('setStoreVariantOfTesting', 'teaching')
                 this.$router.push('/teaching')
             },
         },
         computed: {
-            ...mapGetters(['get_active_theme', 'get_active_question', 'get_active_theme_id'])
+            ...mapGetters(['is_admin', 'get_active_theme', 'get_active_question', 'get_active_theme_id'])
         },
     }
 </script>

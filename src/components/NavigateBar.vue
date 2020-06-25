@@ -16,13 +16,14 @@
                 <button @click="goBack" class="btn text-light">
                     <ArrowLeftShort/>
                 </button>
-                <p>{{this.get_active_theme_name}}</p>
+                <p>{{this.get_active_theme_name || this.$router.currentRoute.path}}</p>
                 <button @click="menuOpen" class="btn text-light">
                     <MenuIcon/>
                 </button>
             </div>
         </nav>
         <Crumbs v-if="['/exam', '/teaching', '/show_answers'].includes(this.$route.path)"/>
+        <div v-if="is_admin" style="text-align: center; padding: 0.5rem;background-color: antiquewhite;">Editor mode</div>
     </div>
 </template>
 
@@ -30,12 +31,11 @@
     import {mapGetters} from 'vuex'
     import Crumbs from "./Crumbs";
     import ArrowLeftShort from "./icons/ArrowLeftShort";
-    import XCircle from "./icons/XCircle";
     import MenuIcon from "./icons/MenuIcon";
 
     export default {
         name: "NavigateBar",
-        components: {MenuIcon, XCircle, ArrowLeftShort, Crumbs},
+        components: {MenuIcon, ArrowLeftShort, Crumbs},
         data() {
             return {
                 inputText: '',
@@ -74,7 +74,7 @@
             }
         },
         computed: {
-            ...mapGetters(['get_active_theme', 'get_active_question', 'get_variant_of_testing', 'get_loading', 'get_active_theme_name']),
+            ...mapGetters(['is_admin','get_active_theme', 'get_active_question', 'get_variant_of_testing', 'get_loading', 'get_active_theme_name']),
         },
         updated() {
             if (this.$route.path != '/themes') {
@@ -82,8 +82,8 @@
                 this.Search()
             }
         },
-mounted() {
-            if (!this.get_active_theme) {
+        mounted() {
+            if (!this.get_active_theme && this.$router.currentRoute.path !== "/admin") {
                 this.$router.push('/themes')
             }
         }

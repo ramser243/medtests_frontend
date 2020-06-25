@@ -1,9 +1,10 @@
 <template>
-    <ul onmousedown="return false" onselectstart="return false">
+    <ul >
         <AnswerForShowAnswers
                 v-for="(answer_object, index) in get_active_theme['questions'][get_active_question - 1]['answers']"
                 :name="answer_object['name']"
                 :correctness="answer_object['value']"
+                :id="answer_object['id']"
                 :key="index"/>
     </ul>
 </template>

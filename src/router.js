@@ -8,6 +8,7 @@ const Exam = () => import('./components/exam/Exam')
 const ExamEnd = () => import('./components/exam/ExamEnd')
 const ShowAnswers = () => import('./components/show_answers/ShowAnswers')
 const Teaching = () => import('./components/teaching/Teaching')
+const AdminLogin = () => import('./components/AdminLogin')
 
 window.popStateDetected = false
 
@@ -52,6 +53,11 @@ const routes = [
     {
         path: '/teaching',
         component: Teaching,
+        meta: {backPath: '/action_choice'}
+    },
+    {
+        path: '/admin',
+        component: AdminLogin,
         meta: {backPath: '/action_choice'}
     }
 ]
