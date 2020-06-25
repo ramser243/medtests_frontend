@@ -3,12 +3,12 @@
   "name": "MedTests",
   "icons": [
     {
-      "src": "https://tests.promedol.ru/images/medtests.png",
+      "src": "https://tests.promedol.ru/images/medtests_192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://tests.promedol.ru/images/medtests.png",
+      "src": "https://tests.promedol.ru/images/medtests_512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
